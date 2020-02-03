@@ -92,6 +92,7 @@ NAV2D.Navigator = function (options) {
   var actionName = options.actionName || 'move_base_msgs/MoveBaseActionGoal';
   var withOrientation = options.withOrientation || false;
   this.rootObject = options.rootObject || new createjs.Container();
+  var lastGoal;
 
   // setup the actionlib client
   var actionClient = new ROSLIB.ActionClient({
@@ -135,9 +136,15 @@ NAV2D.Navigator = function (options) {
     goalMarker.scaleY = 1.0 / stage.scaleY;
     that.rootObject.addChild(goalMarker);
 
-    goal.on('result', function () {
-      that.rootObject.removeChild(goalMarker);
-    });
+    if (lastGoal !== undefined) {
+      that.rootObject.removeChild(lastGoal);
+    }
+
+    lastGoal = goalMarker;
+
+    //Events dont work with this navigation system
+    // goal.on('result', function () {
+    // });
   }
 
   // get a handle to the stage
