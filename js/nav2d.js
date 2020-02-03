@@ -35,8 +35,8 @@ NAV2D.ImageMapClientNav = function (options) {
   this.ros = options.ros;
   var topic = options.topic || '/map_metadata';
   var image = options.image;
-  this.serverName = options.serverName || '/move_base';
-  this.actionName = options.actionName || 'move_base_msgs/MoveBaseAction';
+  this.serverName = options.serverName || '/move_base/goal';
+  this.actionName = options.actionName || 'move_base_msgs/MoveBaseActionGoal';
   this.rootObject = options.rootObject || new createjs.Container();
   this.viewer = options.viewer;
   this.withOrientation = options.withOrientation || false;
@@ -88,8 +88,8 @@ NAV2D.Navigator = function (options) {
   var that = this;
   options = options || {};
   var ros = options.ros;
-  var serverName = options.serverName || '/move_base';
-  var actionName = options.actionName || 'move_base_msgs/MoveBaseAction';
+  var serverName = options.serverName || '/move_base/goal';
+  var actionName = options.actionName || 'move_base_msgs/MoveBaseActionGoal';
   var withOrientation = options.withOrientation || false;
   this.rootObject = options.rootObject || new createjs.Container();
 
@@ -112,7 +112,7 @@ NAV2D.Navigator = function (options) {
       goalMessage: {
         target_pose: {
           header: {
-            frame_id: '/map'
+            frame_id: 'map'
           },
           pose: pose
         }
