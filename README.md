@@ -1,4 +1,4 @@
-# RosHTTPNavigationMap
+# ros_http_navigation_map (RosHTTPNavigationMap)
 Map with markers for ROS robot navigation.
 Simple http page with map and robot location marker.
 
